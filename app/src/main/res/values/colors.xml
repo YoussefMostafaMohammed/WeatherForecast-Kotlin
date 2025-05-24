@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary_day">#FF212121</color> <!-- Dark gray for day -->
+    <color name="primary_night">#FF121212</color> <!-- Near black for night -->
+    <color name="accent">#FF00B0FF</color> <!-- Neon blue for highlights -->
+    <color name="background_day">#FFF5F5F5</color> <!-- Light gray for day -->
+    <color name="background_night">#FF1C2526</color> <!-- Dark gray for night -->
+    <color name="surface_day">#E6FFFFFF</color> <!-- Translucent white for day -->
+    <color name="surface_night">#E6333333</color> <!-- Translucent dark for night -->
+    <color name="on_surface">#FF212121</color> <!-- Dark text -->
+    <color name="on_surface_variant">#FF757575</color> <!-- Gray text -->
+    <color name="chip_background_day">#E6E0E0E0</color> <!-- Translucent gray for chips -->
+    <color name="chip_background_night">#E6222222</color> <!-- Translucent dark for chips -->
+    <color name="stroke_color">#FFB0BEC5</color> <!-- Light gray stroke -->
+    <color name="fab_accent">#FFFFD740</color> <!-- Yellow for FAB -->
+    <color name="background_light">#F5F5F5</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="primary">#1E88E5</color>
+    <color name="primary_dark">#1A1A1A</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A6A6A6</color>
+    <color name="accent_blue">#0099CC</color>
+    <color name="divider_color">#333333</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="card_background">#1E1E1E</color>
+    <color name="card_border">#3A3A3A</color>
+    <color name="icon_tint">#FFC107</color>
+    <color name="purple_500">#6200EE</color>
 </resources>
