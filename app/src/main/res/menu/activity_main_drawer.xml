@@ -14,9 +14,9 @@
             style="@style/NavigationMenuItemStyle" />
 
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_favorite"
             android:icon="@drawable/ic_heart_filled"
-            android:title="@string/menu_gallery"
+            android:title="@string/menu_Favorite"
             app:actionLayout="@layout/nav_menu_item_layout"
             app:iconTint="@color/icon_tint_day"
             style="@style/NavigationMenuItemStyle" />

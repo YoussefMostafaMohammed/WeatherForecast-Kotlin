@@ -23,11 +23,11 @@ import com.example.weatherforecast.WeatherLocalDataSourceImpl
 import com.example.weatherforecast.WeatherRemoteDataSourceImpl
 import com.example.weatherforecast.WeatherRepository
 import com.example.weatherforecast.WeatherRepositoryImpl
-import com.example.weatherforecast.databinding.FragmentGalleryBinding
+import com.example.weatherforecast.databinding.FragmentFavoriteBinding
 
 class GalleryFragment : Fragment() {
 
-    private var _binding: FragmentGalleryBinding? = null
+    private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: GalleryViewModel
     private lateinit var adapter: FavoriteCityAdapter
@@ -37,7 +37,7 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         // Initialize repository

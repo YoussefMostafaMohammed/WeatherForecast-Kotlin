@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.WeatherForecast" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="colorPrimary">@color/primary_day</item>
+        <item name="colorOnPrimary">@color/text_primary_day</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="android:statusBarColor">@color/primary_day</item>
+        <item name="android:windowBackground">@color/background_day</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>
