@@ -1,35 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="8dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/stroke_day"
+    app:cardBackgroundColor="@color/surface_day"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@drawable/gradient_card_header"
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nav_header_subtitle" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="@string/nav_header_desc"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_logo_foreground"
+            app:tint="@color/icon_tint_day"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_header_title"
+            android:textColor="@color/text_primary_day"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:letterSpacing="0.03"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_header_subtitle"
+            android:textColor="@color/text_secondary_day"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="4sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_day"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

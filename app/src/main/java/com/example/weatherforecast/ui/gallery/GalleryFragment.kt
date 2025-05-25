@@ -14,7 +14,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.weatherforecast.CityEntity
 import com.example.weatherforecast.RetrofitClient
 import com.example.weatherforecast.WeatherDatabase
 import com.example.weatherforecast.WeatherLocalDataSourceImpl
@@ -48,12 +50,18 @@ class GalleryFragment : Fragment() {
             "897f05d7107c1a4583eb10de82e05435"
         )
 
-        // Initialize ViewModel
         val factory = GalleryViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[GalleryViewModel::class.java]
 
         // Setup RecyclerView
-        adapter = FavoriteCityAdapter(viewModel)
+        adapter = FavoriteCityAdapter(viewModel) { city ->
+            val bundle = Bundle().apply {
+                putInt("cityId", city.id)  // The argument name should match what HomeFragment expects
+            }
+            findNavController().navigate(R.id.nav_home, bundle)
+        }
+
+
         binding.rvFavorites.layoutManager = LinearLayoutManager(context)
         binding.rvFavorites.adapter = adapter
 
@@ -81,13 +89,14 @@ class GalleryFragment : Fragment() {
 }
 
 class FavoriteCityAdapter(
-    private val viewModel: GalleryViewModel
+    private val viewModel: GalleryViewModel,
+    private val onCityClicked: (CityEntity) -> Unit
 ) : ListAdapter<CityWithWeather, FavoriteCityAdapter.CityViewHolder>(CityDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_favorite_city, parent, false)
-        return CityViewHolder(view, viewModel)
+        return CityViewHolder(view, viewModel,onCityClicked )
     }
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
@@ -97,7 +106,8 @@ class FavoriteCityAdapter(
 
     class CityViewHolder(
         itemView: View,
-        private val viewModel: GalleryViewModel
+        private val viewModel: GalleryViewModel,
+        private val onCityClicked: (CityEntity) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
         private val cityNameTextView: TextView = itemView.findViewById(R.id.tvCityName)
         private val countryTextView: TextView = itemView.findViewById(R.id.tvCountry)
@@ -125,6 +135,10 @@ class FavoriteCityAdapter(
             // Handle favorite toggle
             favoriteButton.setOnClickListener {
                 viewModel.toggleFavorite(city)
+            }
+
+            itemView.setOnClickListener {
+                onCityClicked(city)
             }
         }
 

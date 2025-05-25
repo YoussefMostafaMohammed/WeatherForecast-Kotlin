@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Main fill: use your theme’s primary (or a fixed green) -->
+    <solid android:color="?attr/colorPrimary" />
+
+    <!-- White border for visibility on any background -->
+    <stroke
+        android:width="2dp"
+        android:color="@android:color/white" />
+
+    <!-- Size is governed by your View (16dp × 16dp) -->
+</shape>

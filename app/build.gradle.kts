@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
 }
-
 android {
     namespace = "com.example.weatherforecast"
     compileSdk = 35
@@ -14,7 +13,7 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField( "String", "WEATHER_API_KEY", "\"897f05d7107c1a4583eb10de82e05435\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,7 +29,8 @@ android {
 
     buildFeatures {
         viewBinding = true
-        dataBinding=true
+        dataBinding = true
+        buildConfig = true
     }
 
     compileOptions {

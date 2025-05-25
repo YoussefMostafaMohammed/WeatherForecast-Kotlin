@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:icon="@drawable/ic_home_outline"
+            android:title="@string/menu_home"
+            app:actionLayout="@layout/nav_menu_item_layout"
+            app:iconTint="@color/icon_tint_day"
+            style="@style/NavigationMenuItemStyle" />
+
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:icon="@drawable/ic_heart_filled"
+            android:title="@string/menu_gallery"
+            app:actionLayout="@layout/nav_menu_item_layout"
+            app:iconTint="@color/icon_tint_day"
+            style="@style/NavigationMenuItemStyle" />
+
+        <!--        <item-->
+        <!--            android:id="@+id/nav_slideshow"-->
+        <!--            android:icon="@drawable/ic_slideshow_outline"-->
+        <!--            android:title="@string/menu_slideshow"-->
+        <!--            app:actionLayout="@layout/nav_menu_item_layout"-->
+        <!--            app:iconTint="@color/icon_tint_day"-->
+        <!--            style="@style/NavigationMenuItemStyle" />-->
     </group>
 </menu>

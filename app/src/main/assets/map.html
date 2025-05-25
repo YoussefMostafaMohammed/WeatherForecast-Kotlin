@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Leaflet Map</title>
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        html, body, #map {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map">Loading map...</div>
+<script>
+    let map, marker;
+
+    function initializeMap(lat, lng) {
+      map = L.map('map').setView([lat, lng], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution:
+          '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 19,
+      }).addTo(map);
+
+      map.on('click', function (e) {
+        if (marker) map.removeLayer(marker);
+        marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+        if (
+          window.AndroidInterface &&
+          typeof window.AndroidInterface.onLocationSelected === 'function'
+        ) {
+          window.AndroidInterface.onLocationSelected(
+            e.latlng.lat,
+            e.latlng.lng
+          );
+        } else {
+          console.error('AndroidInterface is not available.');
+        }
+      });
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          initializeMap(
+            position.coords.latitude,
+            position.coords.longitude
+          );
+        },
+        function (error) {
+          console.error('Geolocation error:', error.message);
+          initializeMap(51.5074, -0.1278);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      initializeMap(51.5074, -0.1278);
+    }
+</script>
+</body>
+</html>

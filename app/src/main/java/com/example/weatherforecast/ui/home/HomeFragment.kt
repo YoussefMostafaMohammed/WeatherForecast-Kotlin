@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -18,7 +19,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecast.R
 import com.example.weatherforecast.databinding.FragmentHomeBinding
-import com.example.weatherforecast.ui.home.HourlyAdapter.HourlyViewHolder
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.text.SimpleDateFormat
@@ -26,14 +26,16 @@ import java.util.*
 import android.Manifest
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import com.example.weatherforecast.BuildConfig
 import com.example.weatherforecast.RetrofitClient
 import com.example.weatherforecast.WeatherRepository
 import com.example.weatherforecast.WeatherRepositoryImpl
 import com.example.weatherforecast.WeatherLocalDataSourceImpl
 import com.example.weatherforecast.WeatherDatabase
 import com.example.weatherforecast.WeatherRemoteDataSourceImpl
+
+
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -67,7 +69,7 @@ class HomeFragment : Fragment() {
         val apiService = RetrofitClient.getInstance().apiService
         val remoteDataSource = WeatherRemoteDataSourceImpl(apiService)
         val localDataSource = WeatherLocalDataSourceImpl(database)
-        val apiKey = "897f05d7107c1a4583eb10de82e05435" // Ideally, move to secure config
+        val apiKey = BuildConfig.WEATHER_API_KEY
         val repository = WeatherRepositoryImpl.getInstance(remoteDataSource, localDataSource, apiKey)
         val factory = HomeViewModelFactory(requireActivity().application, repository)
 
@@ -75,16 +77,28 @@ class HomeFragment : Fragment() {
 
         setupRecyclerViews()
         setupObservers()
-        checkLocationPermission()
 
-        viewModel.favoriteEvent.observe(viewLifecycleOwner) { event ->
-            event.getContentIfNotHandled()?.let { wasSaved ->
-                val msg = if (wasSaved) "Saved to favorites" else "Already a favorite"
-                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+        // Handle navigation arguments
+        val cityId = arguments?.getInt("cityId")
+        val latitude = arguments?.getFloat("latitude")
+        val longitude = arguments?.getFloat("longitude")
+
+        when {
+            cityId != null && cityId != 0 -> {
+                Log.d("HomeFragment", "Received cityId: $cityId")
+                viewModel.fetchCityById(cityId)
+            }
+            latitude != null && longitude != null && latitude != 0f && longitude != 0f -> {
+                Log.d("HomeFragment", "Received coordinates: $latitude, $longitude")
+                viewModel.fetchCityFromCoordinates(latitude.toDouble(), longitude.toDouble())
+                viewModel.fetchCurrentByCoordinates(latitude.toDouble(), longitude.toDouble())
+            }
+            else -> {
+                checkLocationPermission()
             }
         }
 
-        binding.fab.setOnClickListener { view ->
+        binding.fab.setOnClickListener {
             viewModel.markCurrentCityFavorite()
         }
 
@@ -154,13 +168,26 @@ class HomeFragment : Fragment() {
                         temp = "${dailyForecasts.maxOf { it.temp.toInt() }}°C",
                         weatherIcon = firstForecast.weatherIcon
                     )
-                }.drop(1).take(5) // Skip today, take next 5 days
+                }.drop(1).take(5)
                 viewModel.city.value?.let { city ->
                     binding.tvCity.text = city.name
                 }
 
                 dailyAdapter.submitList(dailyItems)
             } ?: Log.w("HomeFragment", "Forecasts data is null")
+        }
+
+        viewModel.favoriteEvent.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let { wasSaved ->
+                val msg = if (wasSaved) "Saved to favorites" else "Already a favorite"
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.errorEvent.observe(viewLifecycleOwner) { event ->
+            event.getContentIfNotHandled()?.let { message ->
+                Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+            }
         }
     }
 

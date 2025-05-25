@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.WeatherForecast" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary_day</item> <!-- Will be overridden in -night -->
+        <item name="colorPrimary">@color/primary_day</item>
         <item name="colorSecondary">@color/accent</item>
         <item name="android:windowBackground">@color/background_day</item>
     </style>
@@ -31,7 +31,7 @@
         <item name="android:textSize">28sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/text_primary_day</item> <!-- will be overridden per theme -->
+        <item name="android:textColor">@color/text_primary_day</item>
     </style>
 
     <!-- Timestamp text -->
@@ -45,7 +45,7 @@
     <style name="TextAppearance.App.TempLarge" parent="TextAppearance.Material3.DisplayLarge">
         <item name="android:textSize">56sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/text_primary_day</item> <!-- will be overridden per theme -->
+        <item name="android:textColor">@color/text_primary_day</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
@@ -66,8 +66,8 @@
 
     <!-- Chip style -->
     <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Entry">
-        <item name="chipBackgroundColor">@color/surface_day</item> <!-- Use surface_night in night theme -->
-        <item name="android:textColor">@color/text_primary_day</item> <!-- Or text_primary_night -->
+        <item name="chipBackgroundColor">@color/surface_day</item>
+        <item name="android:textColor">@color/text_primary_day</item>
         <item name="android:textSize">14sp</item>
         <item name="chipCornerRadius">12dp</item>
     </style>
@@ -94,4 +94,18 @@
     <style name="Theme.WeatherForecast.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.WeatherForecast.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="NavigationMenuItemStyle" parent="Widget.Material3.NavigationView">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:background">@drawable/nav_menu_item_background</item>
+        <item name="android:textColor">@color/text_primary_day</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="iconSize">24dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.NavMenuItem</item>
+    </style>
+
+    <style name="ShapeAppearance.NavMenuItem" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
 </resources>
