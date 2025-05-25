@@ -4,4 +4,5 @@
         android:startColor="@color/background_day"
         android:endColor="@color/background_night"
         android:angle="135" />
+
 </shape>

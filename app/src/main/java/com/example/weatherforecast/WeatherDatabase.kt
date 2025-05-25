@@ -9,19 +9,15 @@
     import androidx.room.Insert
     import androidx.room.OnConflictStrategy
     import androidx.room.Query
-    import com.example.weatherforecast.CityEntity
-    import com.example.weatherforecast.ForecastEntity
 
     @Database(entities = [CityEntity::class, ForecastEntity::class, CurrentWeatherEntity::class], version = 1)
     abstract class WeatherDatabase : RoomDatabase() {
         abstract fun cityDao(): CityDao
         abstract fun forecastDao(): ForecastDao
         abstract fun currentWeatherDao(): CurrentWeatherDao
-
         companion object {
             @Volatile
             private var INSTANCE: WeatherDatabase? = null
-
             fun getDatabase(context: Context): WeatherDatabase {
                 return INSTANCE ?: synchronized(this) {
                     val instance = Room.databaseBuilder(
@@ -43,12 +39,22 @@
 
         @Query("SELECT * FROM city WHERE id = :cityId")
         suspend fun getCityById(cityId: Int): CityEntity?
+
         @Query("SELECT * FROM city WHERE name = :cityName")
         suspend fun getCityByName(cityName: String): CityEntity?
+
         @Query("SELECT * FROM city")
         suspend fun getAllCities(): List<CityEntity>
+
+        @Query("SELECT * FROM city WHERE isFavorite = 1")
+        suspend fun getFavoriteCities(): List<CityEntity>
+
+        @Query("SELECT * FROM city WHERE isSearched = 1")
+        suspend fun getSearchedCities(): List<CityEntity>
+
         @Query("DELETE FROM city WHERE id = :cityId")
         suspend fun deleteCityById(cityId: Int)
+
         @Query("DELETE FROM city")
         suspend fun deleteAllCities()
     }

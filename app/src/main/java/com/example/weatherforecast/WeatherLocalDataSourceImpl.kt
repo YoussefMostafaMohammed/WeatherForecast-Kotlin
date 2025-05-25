@@ -29,4 +29,6 @@ class WeatherLocalDataSourceImpl(
 
     override suspend fun getForecastsForCity(cityId: Int) =
         forecastDao.getForecastsForCity(cityId)
+
+    override suspend fun getFavoriteCities() = cityDao.getFavoriteCities()
 }

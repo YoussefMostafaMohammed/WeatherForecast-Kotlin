@@ -10,7 +10,9 @@ fun mapToCityEntity(city: City): CityEntity {
         population = city.population,
         timezone = city.timezone,
         sunrise = city.sunrise,
-        sunset = city.sunset
+        sunset = city.sunset,
+        isFavorite = false,
+        isSearched = true
     )
 }
 

@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base app theme -->
-    <style name="Theme.WeatherForecast" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary_day</item>
-        <item name="colorPrimaryVariant">@color/primary_night</item>
-        <item name="colorOnPrimary">@color/on_surface</item>
+    <style name="Theme.WeatherForecast" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_day</item> <!-- Will be overridden in -night -->
         <item name="colorSecondary">@color/accent</item>
-        <item name="android:statusBarColor">@color/primary_night</item>
+        <item name="android:windowBackground">@color/background_day</item>
+    </style>
+
+    <!-- Base App Theme for Day -->
+    <style name="Theme.WeatherForecast.Day" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_day</item>
+        <item name="colorOnPrimary">@color/text_primary_day</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="android:statusBarColor">@color/primary_day</item>
         <item name="android:windowBackground">@color/background_day</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/primary_dark</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent_blue</item>
+
+    <!-- Base App Theme for Night -->
+    <style name="Theme.WeatherForecast.Night" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_night</item>
+        <item name="colorOnPrimary">@color/text_primary_night</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="android:statusBarColor">@color/primary_night</item>
+        <item name="android:windowBackground">@color/background_night</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">@color/primary_dark</item>
     </style>
+
     <!-- Header title -->
     <style name="TextAppearance.App.Header" parent="TextAppearance.Material3.HeadlineLarge">
         <item name="android:textSize">28sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textColor">@color/text_primary_day</item> <!-- will be overridden per theme -->
     </style>
 
     <!-- Timestamp text -->
@@ -36,22 +45,15 @@
     <style name="TextAppearance.App.TempLarge" parent="TextAppearance.Material3.DisplayLarge">
         <item name="android:textSize">56sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textColor">@color/text_primary_day</item> <!-- will be overridden per theme -->
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
-
-    <!--    &lt;!&ndash; Body text &ndash;&gt;-->
-    <!--    <style name="TextAppearance.App.Body" parent="TextAppearance.Material3.BodyLarge">-->
-    <!--        <item name="android:textSize">16sp</item>-->
-    <!--        <item name="android:textColor">@color/on_surface_variant</item>-->
-    <!--        <item name="android:fontFamily">sans-serif</item>-->
-    <!--    </style>-->
 
     <!-- Subtitle text -->
     <style name="TextAppearance.App.Subtitle" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:textSize">22sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textColor">@color/text_primary_day</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
@@ -63,42 +65,33 @@
     </style>
 
     <!-- Chip style -->
-    <!--    <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Assist">-->
-    <!--        <item name="chipBackgroundColor">@color/chip_background_day</item>-->
-    <!--        <item name="android:textAppearance">@style/TextAppearance.App.Chip</item>-->
-    <!--        <item name="chipCornerRadius">16dp</item>-->
-    <!--        <item name="chipStrokeColor">@color/stroke_color</item>-->
-    <!--        <item name="chipStrokeWidth">1dp</item>-->
-    <!--        <item name="android:scaleX">1.0</item>-->
-    <!--        <item name="android:scaleY">1.0</item>-->
-    <!--        <item name="android:translationZ">2dp</item>-->
-    <!--        <item name="android:stateListAnimator">@animator/chip_animator</item>-->
-    <!--    </style>-->
-
-
     <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Entry">
-        <item name="chipBackgroundColor">@color/surface</item>
-        <item name="android:textColor">@color/on_surface</item>
+        <item name="chipBackgroundColor">@color/surface_day</item> <!-- Use surface_night in night theme -->
+        <item name="android:textColor">@color/text_primary_day</item> <!-- Or text_primary_night -->
         <item name="android:textSize">14sp</item>
         <item name="chipCornerRadius">12dp</item>
     </style>
 
+    <!-- App title -->
     <style name="TextAppearance.App.Title" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textColor">@color/text_primary_day</item>
     </style>
 
+    <!-- App body text -->
     <style name="TextAppearance.App.Body" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textColor">@color/on_surface_variant</item>
+        <item name="android:textColor">@color/text_secondary_day</item>
     </style>
 
+    <!-- No action bar variant -->
     <style name="Theme.WeatherForecast.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- Toolbar overlays (optional, for fragments) -->
     <style name="Theme.WeatherForecast.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.WeatherForecast.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

@@ -35,7 +35,9 @@ data class CityEntity(
     val population: Int,
     val timezone: Int,
     val sunrise: Long,
-    val sunset: Long
+    val sunset: Long,
+    val isFavorite: Boolean = false,
+    val isSearched: Boolean = false
 )
 
 @Entity(

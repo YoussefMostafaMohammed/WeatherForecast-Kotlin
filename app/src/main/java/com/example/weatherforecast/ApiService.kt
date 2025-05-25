@@ -6,8 +6,16 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("forecast")
-    suspend fun getWeather(
+    suspend fun getWeatherById(
         @Query("id") cityId: Int,
+        @Query("appid") apiKey: String,
+        @Query("units") units: String = "metric"
+    ): Response<WeatherResponse>
+
+    @GET("forecast")
+    suspend fun getWeatherByCoordinates(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("appid") apiKey: String,
         @Query("units") units: String = "metric"
     ): Response<WeatherResponse>
@@ -15,6 +23,14 @@ interface ApiService {
     @GET("weather")
     suspend fun getCurrentWeather(
         @Query("q") cityName: String,
+        @Query("appid") apiKey: String,
+        @Query("units") units: String = "metric"
+    ): Response<CurrentWeatherResponse>
+
+    @GET("weather")
+    suspend fun getCurrentWeatherByCoordinates(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
         @Query("appid") apiKey: String,
         @Query("units") units: String = "metric"
     ): Response<CurrentWeatherResponse>
