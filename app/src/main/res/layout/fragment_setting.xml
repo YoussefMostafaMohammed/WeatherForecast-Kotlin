@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_day">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Location Settings Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/surface_day"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/stroke_day">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <!-- Location Settings Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_location"
+                            app:tint="@color/icon_tint_day"
+                            android:contentDescription="Location Icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Location Settings"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-condensed-medium"/>
+                    </LinearLayout>
+
+                    <!-- Use GPS Location Toggle -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="16dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Use GPS Location"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-medium"/>
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchUseGps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:thumbTint="@color/primary_day"
+                            android:trackTint="@color/stroke_day"
+                            android:checked="true"/>
+                    </LinearLayout>
+
+                    <!-- Choose from Map Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnChooseFromMap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Choose from Map"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_primary_day"
+                        app:backgroundTint="@color/primary_day"
+                        android:paddingVertical="12dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Units Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/surface_day"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/stroke_day">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <!-- Units Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_temperature"
+                            app:tint="@color/icon_tint_day"
+                            android:contentDescription="Units Icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Units"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-condensed-medium"/>
+                    </LinearLayout>
+
+                    <!-- Temperature Unit -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="16dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Temperature Unit"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-medium"/>
+
+                        <Spinner
+                            android:id="@+id/spinnerTemperatureUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_background"
+                            android:spinnerMode="dropdown"
+                            android:entries="@array/temperature_units"
+                            android:dropDownVerticalOffset="8dp"
+                            android:popupBackground="@color/surface_day"/>
+                    </LinearLayout>
+
+                    <!-- Pressure Unit -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="8dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Pressure Unit"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-medium"/>
+
+                        <Spinner
+                            android:id="@+id/spinnerPressureUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_background"
+                            android:spinnerMode="dropdown"
+                            android:entries="@array/pressure_units"
+                            android:dropDownVerticalOffset="8dp"
+                            android:popupBackground="@color/surface_day"/>
+                    </LinearLayout>
+
+                    <!-- Wind Speed Unit -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="8dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Wind Speed Unit"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-medium"/>
+
+                        <Spinner
+                            android:id="@+id/spinnerWindSpeedUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_background"
+                            android:spinnerMode="dropdown"
+                            android:entries="@array/wind_speed_units"
+                            android:dropDownVerticalOffset="8dp"
+                            android:popupBackground="@color/surface_day"/>
+                    </LinearLayout>
+
+                    <!-- Elevation Units -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="8dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Elevation Units"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-medium"/>
+
+                        <Spinner
+                            android:id="@+id/spinnerElevationUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_background"
+                            android:spinnerMode="dropdown"
+                            android:entries="@array/elevation_units"
+                            android:dropDownVerticalOffset="8dp"
+                            android:popupBackground="@color/surface_day"/>
+                    </LinearLayout>
+
+                    <!-- Visibility Units -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="8dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Visibility Units"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-medium"/>
+
+                        <Spinner
+                            android:id="@+id/spinnerVisibilityUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_background"
+                            android:spinnerMode="dropdown"
+                            android:entries="@array/visibility_units"
+                            android:dropDownVerticalOffset="8dp"
+                            android:popupBackground="@color/surface_day"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Language Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@color/surface_day"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/stroke_day">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <!-- Language Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_language"
+                            app:tint="@color/icon_tint_day"
+                            android:contentDescription="Language Icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Language"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-condensed-medium"/>
+                    </LinearLayout>
+
+                    <!-- App Language -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="16dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="App Language"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary_day"
+                            android:fontFamily="sans-serif-medium"/>
+
+                        <Spinner
+                            android:id="@+id/spinnerLanguage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_background"
+                            android:spinnerMode="dropdown"
+                            android:entries="@array/languages"
+                            android:dropDownVerticalOffset="8dp"
+                            android:popupBackground="@color/surface_day"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_save"
+        app:tint="@color/icon_tint_day"
+        app:backgroundTint="@color/primary_day"
+        android:contentDescription="Save Settings"
+        android:layout_gravity="end|bottom"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

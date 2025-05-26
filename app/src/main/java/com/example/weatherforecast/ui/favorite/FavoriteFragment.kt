@@ -40,7 +40,6 @@ class GalleryFragment : Fragment() {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // Initialize repository
         val database = WeatherDatabase.getDatabase(requireContext())
         val localDataSource = WeatherLocalDataSourceImpl(database)
         val remoteDataSource = WeatherRemoteDataSourceImpl(RetrofitClient.getInstance().apiService)
@@ -53,7 +52,6 @@ class GalleryFragment : Fragment() {
         val factory = GalleryViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[GalleryViewModel::class.java]
 
-        // Setup RecyclerView
         adapter = FavoriteCityAdapter(viewModel) { city ->
             val bundle = Bundle().apply {
                 putInt("cityId", city.id)  // The argument name should match what HomeFragment expects
@@ -65,7 +63,6 @@ class GalleryFragment : Fragment() {
         binding.rvFavorites.layoutManager = LinearLayoutManager(context)
         binding.rvFavorites.adapter = adapter
 
-        // Observe LiveData
         viewModel.favoriteCities.observe(viewLifecycleOwner) { cities ->
             adapter.submitList(cities)
         }
@@ -123,16 +120,13 @@ class FavoriteCityAdapter(
             countryTextView.text = city.country
             temperatureTextView.text = weather?.let { "${it.temp.toInt()}°C" } ?: "N/A"
 
-            // Set weather icon
             weather?.weatherIcon?.let { iconCode ->
                 val iconResId = mapWeatherIcon(iconCode)
                 weatherIconImageView.setImageResource(iconResId)
             } ?: weatherIconImageView.setImageResource(R.drawable.ic_day_sunny)
 
-            // Set heart icon (all cities in this list are favorites)
             favoriteButton.setImageResource(R.drawable.ic_heart_filled)
 
-            // Handle favorite toggle
             favoriteButton.setOnClickListener {
                 viewModel.toggleFavorite(city)
             }
@@ -160,7 +154,6 @@ class FavoriteCityAdapter(
                 else -> R.drawable.ic_day_sunny
             }
         }
-
     }
 
     class CityDiffCallback : DiffUtil.ItemCallback<CityWithWeather>() {

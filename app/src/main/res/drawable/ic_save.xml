@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Save icon (simplified floppy disk shape) -->
+    <path
+        android:pathData="M4,4h16v12h-16z"
+        android:fillColor="#000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"/>
+
+    <!-- Top flap of the disk -->
+    <path
+        android:pathData="M4,4h8v4h-8z"
+        android:fillColor="#00000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"/>
+
+    <!-- Write-protect notch -->
+    <path
+        android:pathData="M18,8h2v2h-2z"
+        android:fillColor="#000000"
+        android:strokeColor="#00000000"/>
+
+</vector>

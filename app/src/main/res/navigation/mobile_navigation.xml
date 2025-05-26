@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/nav_favorite"
-        android:name="com.example.weatherforecast.ui.gallery.GalleryFragment"
+        android:name="com.example.weatherforecast.ui.favorite.GalleryFragment"
         android:label="Favorites">
         <action
             android:id="@+id/action_nav_gallery_to_nav_home"
@@ -35,10 +35,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.weatherforecast.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_setting"
+        android:name="com.example.weatherforecast.ui.setting.SettingFragment"
+        android:label="@string/menu_setting"
+        tools:layout="@layout/fragment_setting" />
 
     <fragment
         android:id="@+id/mapPickerFragment"
