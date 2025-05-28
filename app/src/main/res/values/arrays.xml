@@ -35,5 +35,10 @@
         <item>en</item>
         <item>ar</item>
     </string-array>
+        <string-array name="alarm_types">
+            <item>notification</item>
+            <item>alarm</item>
+        </string-array>
+
     <string name="settings_saved_language">Settings saved: %1$s</string>
 </resources>

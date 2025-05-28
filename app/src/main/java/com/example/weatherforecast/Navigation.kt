@@ -1,7 +1,10 @@
 package com.example.weatherforecast
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +29,19 @@ class Navigation : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.appBarNavigation.toolbar)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        // Create notification channel for weather alerts
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                "weather_alerts",
+                "Weather Alerts",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Channel for weather alert notifications"
+            }
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager.createNotificationChannel(channel)
+        }
 
         val navHost = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_content_navigation)
@@ -68,11 +84,14 @@ class Navigation : AppCompatActivity() {
         val mapButton = mapMenuItem.actionView
             ?.findViewById<MaterialButton>(R.id.btn_map)
         mapButton?.setOnClickListener {
+            val bundle = Bundle().apply {
+                putBoolean("is_city_selection_mode", false)
+            }
             (supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment_content_navigation)
                     as NavHostFragment)
                 .navController
-                .navigate(R.id.action_global_mapPickerFragment)
+                .navigate(R.id.action_global_mapPickerFragment, bundle)
         }
         return true
     }

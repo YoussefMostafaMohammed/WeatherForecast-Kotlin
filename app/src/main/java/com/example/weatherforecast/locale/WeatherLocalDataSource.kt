@@ -1,8 +1,8 @@
-package com.example.weatherforecast
+package com.example.weatherforecast.locale
 
+import com.example.weatherforecast.CityEntity
 import com.example.weatherforecast.CurrentWeatherEntity
 import com.example.weatherforecast.ForecastEntity
-import com.example.weatherforecast.CityEntity
 
 interface WeatherLocalDataSource {
     suspend fun saveCity(city: CityEntity)
@@ -14,5 +14,3 @@ interface WeatherLocalDataSource {
     suspend fun getForecastsForCity(cityId: Int): List<ForecastEntity>
     suspend fun getFavoriteCities(): List<CityEntity>
 }
-
-

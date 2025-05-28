@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherforecast.CityEntity
 import com.example.weatherforecast.RetrofitClient
 import com.example.weatherforecast.WeatherDatabase
-import com.example.weatherforecast.WeatherLocalDataSourceImpl
-import com.example.weatherforecast.WeatherRemoteDataSourceImpl
+import com.example.weatherforecast.locale.WeatherLocalDataSourceImpl
+import com.example.weatherforecast.remote.WeatherRemoteDataSourceImpl
 import com.example.weatherforecast.WeatherRepository
 import com.example.weatherforecast.WeatherRepositoryImpl
 import com.example.weatherforecast.databinding.FragmentFavoriteBinding

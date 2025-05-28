@@ -1,9 +1,10 @@
-package com.example.weatherforecast
+package com.example.weatherforecast.locale
 
-import com.example.weatherforecast.WeatherDatabase
+import com.example.weatherforecast.CityEntity
 import com.example.weatherforecast.CurrentWeatherEntity
 import com.example.weatherforecast.ForecastEntity
-import com.example.weatherforecast.CityEntity
+import com.example.weatherforecast.WeatherDatabase
+import com.example.weatherforecast.locale.WeatherLocalDataSource
 
 class WeatherLocalDataSourceImpl(
     db: WeatherDatabase

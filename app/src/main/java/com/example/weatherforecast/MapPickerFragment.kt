@@ -14,6 +14,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.weatherforecast.databinding.FragmentMapPickerBinding
+import com.example.weatherforecast.locale.WeatherLocalDataSourceImpl
+import com.example.weatherforecast.remote.WeatherRemoteDataSourceImpl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MapPickerFragment : Fragment() {
 
@@ -25,6 +31,15 @@ class MapPickerFragment : Fragment() {
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
     private val REQUEST_LOCATION = 1234
+
+    // Flag to determine the context (city selection or navigation)
+    private var isCitySelectionMode: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Retrieve the flag from arguments
+        isCitySelectionMode = arguments?.getBoolean("is_city_selection_mode", false) ?: false
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,11 +102,49 @@ class MapPickerFragment : Fragment() {
         @android.webkit.JavascriptInterface
         fun onLocationSelected(latitude: Double, longitude: Double) {
             requireActivity().runOnUiThread {
-                val bundle = Bundle().apply {
-                    putFloat("latitude", latitude.toFloat())
-                    putFloat("longitude", longitude.toFloat())
+                if (isCitySelectionMode) {
+                    // Initialize repository
+                    val database = WeatherDatabase.getDatabase(requireActivity().application)
+                    val apiService = RetrofitClient.getInstance().apiService
+                    val remoteDataSource = WeatherRemoteDataSourceImpl(apiService)
+                    val localDataSource = WeatherLocalDataSourceImpl(database)
+                    val repository = WeatherRepositoryImpl.getInstance(
+                        remoteDataSource,
+                        localDataSource,
+                        BuildConfig.WEATHER_API_KEY
+                    )
+
+                    // Fetch city by coordinates
+                    CoroutineScope(Dispatchers.Main).launch {
+                        try {
+                            val (cityEntity, _) = withContext(Dispatchers.IO) {
+                                repository.fetchCurrentWeatherByCoordinates(latitude, longitude)
+                            }
+                            (requireActivity() as? MapPickerActivity)?.onCitySelected(cityEntity.id, cityEntity.name)
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Failed to fetch city: ${e.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } else {
+                    // For navigation graph: Navigate to HomeFragment
+                    val bundle = Bundle().apply {
+                        putFloat("latitude", latitude.toFloat())
+                        putFloat("longitude", longitude.toFloat())
+                    }
+                    try {
+                        findNavController().navigate(R.id.action_global_homeFragment, bundle)
+                    } catch (e: IllegalStateException) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Navigation error: Unable to navigate to Home",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-                findNavController().navigate(R.id.action_global_homeFragment, bundle)
             }
         }
     }

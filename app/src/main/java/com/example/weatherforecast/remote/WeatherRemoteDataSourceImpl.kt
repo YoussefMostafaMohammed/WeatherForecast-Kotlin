@@ -1,6 +1,8 @@
-package com.example.weatherforecast
+package com.example.weatherforecast.remote
 
-import com.example.weatherforecast.remote.WeatherRemoteDataSource
+import com.example.weatherforecast.ApiService
+import com.example.weatherforecast.CurrentWeatherResponse
+import com.example.weatherforecast.WeatherResponse
 
 class WeatherRemoteDataSourceImpl(
     private val api: ApiService
