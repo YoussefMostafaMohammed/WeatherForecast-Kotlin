@@ -35,7 +35,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="12dp"
-            android:contentDescription="Weather Icon"
+            android:contentDescription="@string/weather_icon"
             app:tint="@color/icon_tint_day"
             android:transitionName="hourly_weather_icon"/>
 

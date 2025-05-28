@@ -1,50 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Visibility units: API returns meters, others converted client-side -->
-    <string-array name="visibility_units">
-        <item>Meters</item>
-        <item>Kilometers</item>
-        <item>Miles</item>
+    <string-array name="temperature_units">
+        <item>Celsius</item>
+        <item>Kelvin</item>
+        <item>Fahrenheit</item>
     </string-array>
-
-    <!-- Languages: All supported by API's lang parameter -->
-    <string-array name="languages">
-        <item>English</item>
-        <item>Spanish</item>
-        <item>French</item>
-        <item>German</item>
-        <item>Italian</item>
-        <item>Portuguese</item>
-        <item>Russian</item>
-        <item>Chinese</item>
-        <item>Japanese</item>
-        <item>Arabic</item>
-    </string-array>
-
-    <!-- Elevation units: Standard units, converted client-side if needed -->
-    <string-array name="elevation_units">
-        <item>Meters</item>
-        <item>Feet</item>
-    </string-array>
-
-    <!-- Wind speed units: API supports m/s (metric) and mph (imperial), km/h converted client-side -->
-    <string-array name="wind_speed_units">
-        <item>m/s</item>
-        <item>km/h</item>
-        <item>mph</item>
-    </string-array>
-
-    <!-- Pressure units: API returns hPa, others converted client-side (hPa = mb) -->
     <string-array name="pressure_units">
         <item>hPa</item>
         <item>mb</item>
         <item>in Hg</item>
         <item>mm Hg</item>
     </string-array>
-
-    <!-- Temperature units: API supports Celsius (metric) and Fahrenheit (imperial) -->
-    <string-array name="temperature_units">
-        <item>Celsius</item>
-        <item>Fahrenheit</item>
+    <string-array name="wind_speed_units">
+        <item>m/s</item>
+        <item>km/h</item>
+        <item>mph</item>
     </string-array>
+    <string-array name="elevation_units">
+        <item>Meters</item>
+        <item>Feet</item>
+    </string-array>
+    <string-array name="visibility_units">
+        <item>Meters</item>
+        <item>Kilometers</item>
+        <item>Miles</item>
+    </string-array>
+    <string-array name="languages">
+        <item>System Language</item>
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
+    <string-array name="locale_codes">
+        <item></item>
+        <item>en</item>
+        <item>ar</item>
+    </string-array>
+    <string name="settings_saved_language">Settings saved: %1$s</string>
 </resources>

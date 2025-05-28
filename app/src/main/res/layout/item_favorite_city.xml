@@ -24,7 +24,7 @@
             android:id="@+id/ivWeatherIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:contentDescription="Weather Icon"
+            android:contentDescription="@string/weather_icon"
             android:scaleType="centerInside" />
 
         <!-- City Information -->
@@ -69,7 +69,7 @@
             android:layout_height="48dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_heart_filled"
-            android:contentDescription="Toggle Favorite"
+            android:contentDescription="@string/toggle_favorite"
             android:layout_gravity="center_vertical"
             app:tint="@color/heart_tint" />
 

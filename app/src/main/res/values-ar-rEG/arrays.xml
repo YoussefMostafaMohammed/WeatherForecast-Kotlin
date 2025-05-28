@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="temperature_units">
+        <item>سيلزيوس</item>
+        <item>كلفن</item>
+        <item>فهرنهايت</item>
+    </string-array>
+    <string-array name="pressure_units">
+        <item>هكتوباسكال</item>
+        <item>ميليبار</item>
+        <item>بوصة زئبق</item>
+        <item>ملم زئبق</item>
+    </string-array>
+    <string-array name="wind_speed_units">
+        <item>م/ث</item>
+        <item>كم/س</item>
+        <item>ميل/س</item>
+    </string-array>
+    <string-array name="elevation_units">
+        <item>متر</item>
+        <item>قدم</item>
+    </string-array>
+    <string-array name="visibility_units">
+        <item>متر</item>
+        <item>كيلومتر</item>
+        <item>ميل</item>
+    </string-array>
+    <string-array name="languages">
+        <item>لغة النظام</item>
+        <item>الإنجليزية</item>
+        <item>العربية</item>
+    </string-array>
+    <string-array name="locale_codes">
+        <item></item>
+        <item>en</item>
+        <item>ar</item>
+    </string-array>
+    <string name="settings_saved_language">تم حفظ الإعدادات: %1$s</string>
+</resources>

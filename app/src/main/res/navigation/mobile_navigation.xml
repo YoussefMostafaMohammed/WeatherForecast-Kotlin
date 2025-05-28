@@ -25,10 +25,10 @@
 
     <fragment
         android:id="@+id/nav_favorite"
-        android:name="com.example.weatherforecast.ui.favorite.GalleryFragment"
+        android:name="com.example.weatherforecast.ui.favorite.FavoriteFragment"
         android:label="Favorites">
         <action
-            android:id="@+id/action_nav_gallery_to_nav_home"
+            android:id="@+id/action_nav_favorite_to_nav_home"
             app:destination="@id/nav_home"
             app:popUpTo="@id/nav_favorite"
             app:popUpToInclusive="true" />

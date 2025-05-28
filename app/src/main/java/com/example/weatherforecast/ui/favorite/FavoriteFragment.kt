@@ -1,4 +1,4 @@
-package com.example.weatherforecast.ui.gallery
+package com.example.weatherforecast.ui.favorite
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -25,11 +25,11 @@ import com.example.weatherforecast.WeatherRepository
 import com.example.weatherforecast.WeatherRepositoryImpl
 import com.example.weatherforecast.databinding.FragmentFavoriteBinding
 
-class GalleryFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: GalleryViewModel
+    private lateinit var viewModel: FavoriteViewModel
     private lateinit var adapter: FavoriteCityAdapter
 
     override fun onCreateView(
@@ -49,8 +49,8 @@ class GalleryFragment : Fragment() {
             "897f05d7107c1a4583eb10de82e05435"
         )
 
-        val factory = GalleryViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory)[GalleryViewModel::class.java]
+        val factory = FavoriteViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
         adapter = FavoriteCityAdapter(viewModel) { city ->
             val bundle = Bundle().apply {
@@ -86,7 +86,7 @@ class GalleryFragment : Fragment() {
 }
 
 class FavoriteCityAdapter(
-    private val viewModel: GalleryViewModel,
+    private val viewModel: FavoriteViewModel,
     private val onCityClicked: (CityEntity) -> Unit
 ) : ListAdapter<CityWithWeather, FavoriteCityAdapter.CityViewHolder>(CityDiffCallback()) {
 
@@ -103,7 +103,7 @@ class FavoriteCityAdapter(
 
     class CityViewHolder(
         itemView: View,
-        private val viewModel: GalleryViewModel,
+        private val viewModel: FavoriteViewModel,
         private val onCityClicked: (CityEntity) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
         private val cityNameTextView: TextView = itemView.findViewById(R.id.tvCityName)
@@ -167,13 +167,13 @@ class FavoriteCityAdapter(
     }
 }
 
-class GalleryViewModelFactory(
+class FavoriteViewModelFactory(
     private val repository: WeatherRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(GalleryViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(FavoriteViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return GalleryViewModel(repository) as T
+            return FavoriteViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

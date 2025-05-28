@@ -42,20 +42,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_location"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Location Icon"/>
+                            android:contentDescription="@string/location_icon"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
-                            android:text="Location Settings"
+                            android:text="@string/location_settings"
                             android:textSize="20sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-condensed-medium"/>
@@ -74,7 +75,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Use GPS Location"
+                            android:text="@string/use_gps_location"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-medium"/>
@@ -94,7 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Choose from Map"
+                        android:text="@string/choose_from_map"
                         android:textSize="16sp"
                         android:textColor="@color/text_primary_day"
                         app:backgroundTint="@color/primary_day"
@@ -124,20 +125,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_temperature"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Units Icon"/>
+                            android:contentDescription="@string/units_icon"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
-                            android:text="Units"
+                            android:text="@string/units"
                             android:textSize="20sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-condensed-medium"/>
@@ -156,7 +158,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Temperature Unit"
+                            android:text="@string/temperature_unit"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-medium"/>
@@ -185,7 +187,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Pressure Unit"
+                            android:text="@string/pressure_unit"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-medium"/>
@@ -214,7 +216,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Wind Speed Unit"
+                            android:text="@string/wind_speed_unit"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-medium"/>
@@ -243,7 +245,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Elevation Units"
+                            android:text="@string/elevation_units"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-medium"/>
@@ -272,7 +274,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Visibility Units"
+                            android:text="@string/visibility_units"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-medium"/>
@@ -312,20 +314,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_language"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Language Icon"/>
+                            android:contentDescription="@string/language_icon"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
-                            android:text="Language"
+                            android:text="@string/language"
                             android:textSize="20sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-condensed-medium"/>
@@ -344,7 +347,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="App Language"
+                            android:text="@string/app_language"
                             android:textSize="16sp"
                             android:textColor="@color/text_primary_day"
                             android:fontFamily="sans-serif-medium"/>
@@ -372,6 +375,6 @@
         app:srcCompat="@drawable/ic_save"
         app:tint="@color/icon_tint_day"
         app:backgroundTint="@color/primary_day"
-        android:contentDescription="Save Settings"
+        android:contentDescription="@string/save_settings"
         android:layout_gravity="end|bottom"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,5 +1,4 @@
-package com.example.weatherforecast.ui.gallery
-
+package com.example.weatherforecast.ui.favorite
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,7 +28,7 @@ data class CityWithWeather(
     val weather: CurrentWeatherEntity?
 )
 
-class GalleryViewModel(
+class FavoriteViewModel(
     private val repository: WeatherRepository
 ) : ViewModel() {
 

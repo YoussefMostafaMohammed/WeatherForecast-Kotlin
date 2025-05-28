@@ -37,7 +37,7 @@
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"
             app:tint="@color/icon_tint_day"
-            android:contentDescription="Weather Icon"
+            android:contentDescription="@string/weather_icon"
             android:transitionName="daily_weather_icon"/>
 
         <TextView

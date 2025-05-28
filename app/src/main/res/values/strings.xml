@@ -12,12 +12,10 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="weather_icon_desc">Weather ICON\n</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="settings_action_desc">settings action desc</string>
     <string name="nav_header_profile_desc">nav_header_profile_desc\n</string>
@@ -28,4 +26,38 @@
     <string name="nav_header_action_desc">nav_header_action_desc</string>
     <string name="menu_Favorite">Favorite\n</string>
     <string name="menu_setting">Setting\n</string>
+    <string name="perfect_day_for_a_walk">Perfect day for a walk!</string>
+    <string name="humidity_icon">Humidity Icon</string>
+    <string name="wind_icon">Wind Icon</string>
+    <string name="pressure_icon">Pressure Icon</string>
+    <string name="cloudiness_icon">Cloudiness Icon</string>
+    <string name="hourly_forecast">Hourly Forecast</string>
+    <string name="_5_day_forecast">5-Day Forecast</string>
+    <string name="sunrise_icon">Sunrise Icon</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset_icon">Sunset Icon</string>
+    <string name="sunset">Sunset</string>
+    <string name="favorite">Favorite</string>
+    <string name="your_favorite_cities">Your Favorite Cities</string>
+    <string name="location_settings">Location Settings</string>
+    <string name="use_gps_location">Use GPS Location</string>
+    <string name="choose_from_map">Choose from Map</string>
+    <string name="units_icon">Units Icon</string>
+    <string name="units">Units</string>
+    <string name="temperature_unit">Temperature Unit</string>
+    <string name="pressure_unit">Pressure Unit</string>
+    <string name="wind_speed_unit">Wind Speed Unit</string>
+    <string name="elevation_units">Elevation Units</string>
+    <string name="visibility_units">Visibility Units</string>
+    <string name="language_icon">Language Icon</string>
+    <string name="language">Language</string>
+    <string name="app_language">App Language</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="toggle_favorite">Toggle Favorite</string>
+    <string name="map">Map</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind">Wind</string>
+    <string name="clouds">Clouds</string>
+    <string name="pressure">Pressure</string>
+    <string name="Feels">Feels</string>
 </resources>

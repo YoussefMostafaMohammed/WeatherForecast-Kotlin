@@ -1,5 +1,6 @@
 package com.example.weatherforecast.ui.setting
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.weatherforecast.R
 import com.example.weatherforecast.databinding.FragmentSettingBinding
@@ -20,7 +23,8 @@ class SettingFragment : Fragment() {
 
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: SettingViewModel by viewModels()
+    private val viewModel: SettingViewModel by viewModels { SettingViewModelFactory(requireActivity().application) }
+    private var isRecreating = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,25 +39,20 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            // Initialize Use GPS Location Switch
             switchUseGps.isChecked = viewModel.useGpsLocation.value ?: true
             switchUseGps.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.updateUseGpsLocation(isChecked)
             }
 
-            // Helper function to set up Spinner adapters
             fun setupSpinner(spinner: Spinner, entries: Array<String>, selectedIndex: Int, listener: AdapterView.OnItemSelectedListener) {
                 val adapter = ArrayAdapter(requireContext(), R.layout.spinner_item, entries).apply {
                     setDropDownViewResource(R.layout.spinner_dropdown_item)
                 }
                 spinner.adapter = adapter
-                spinner.post {
-                    spinner.setSelection(selectedIndex)
-                    spinner.onItemSelectedListener = listener
-                }
+                spinner.setSelection(selectedIndex, false)
+                spinner.onItemSelectedListener = listener
             }
 
-            // Initialize Spinners with ViewModel data
             setupSpinner(
                 spinnerTemperatureUnit,
                 resources.getStringArray(R.array.temperature_units),
@@ -96,48 +95,68 @@ class SettingFragment : Fragment() {
                 viewModel.getLanguageListener()
             )
 
-            // Choose from Map Button
             btnChooseFromMap.setOnClickListener {
                 findNavController().navigate(R.id.action_global_mapPickerFragment)
             }
 
-            // Floating Action Button (Save)
             fab.setOnClickListener {
                 saveSettings()
             }
         }
 
-        // Observe ViewModel changes for UI updates
         viewModel.text.observe(viewLifecycleOwner) { text ->
             Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
         }
+
+        // Restore spinner states if available
+        savedInstanceState?.let { bundle ->
+            binding.spinnerTemperatureUnit.setSelection(bundle.getInt("tempUnitIndex", viewModel.getTemperatureUnitIndex()))
+            binding.spinnerPressureUnit.setSelection(bundle.getInt("pressureUnitIndex", viewModel.getPressureUnitIndex()))
+            binding.spinnerWindSpeedUnit.setSelection(bundle.getInt("windSpeedUnitIndex", viewModel.getWindSpeedUnitIndex()))
+            binding.spinnerElevationUnit.setSelection(bundle.getInt("elevationUnitIndex", viewModel.getElevationUnitIndex()))
+            binding.spinnerVisibilityUnit.setSelection(bundle.getInt("visibilityUnitIndex", viewModel.getVisibilityUnitIndex()))
+            binding.spinnerLanguage.setSelection(bundle.getInt("languageIndex", viewModel.getLanguageIndex()))
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save spinner states
+        outState.putInt("tempUnitIndex", binding.spinnerTemperatureUnit.selectedItemPosition)
+        outState.putInt("pressureUnitIndex", binding.spinnerPressureUnit.selectedItemPosition)
+        outState.putInt("windSpeedUnitIndex", binding.spinnerWindSpeedUnit.selectedItemPosition)
+        outState.putInt("elevationUnitIndex", binding.spinnerElevationUnit.selectedItemPosition)
+        outState.putInt("visibilityUnitIndex", binding.spinnerVisibilityUnit.selectedItemPosition)
+        outState.putInt("languageIndex", binding.spinnerLanguage.selectedItemPosition)
     }
 
     private fun saveSettings() {
-        // Example: Collect settings from UI and update ViewModel
-        val useGps = binding.switchUseGps.isChecked
-        val tempUnit = binding.spinnerTemperatureUnit.selectedItem.toString()
-        val pressureUnit = binding.spinnerPressureUnit.selectedItem.toString()
-        val windSpeedUnit = binding.spinnerWindSpeedUnit.selectedItem.toString()
-        val elevationUnit = binding.spinnerElevationUnit.selectedItem.toString()
-        val visibilityUnit = binding.spinnerVisibilityUnit.selectedItem.toString()
-        val language = binding.spinnerLanguage.selectedItem.toString()
+        if (isRecreating) return
 
-        viewModel.saveSettings(
-            useGps,
-            tempUnit,
-            pressureUnit,
-            windSpeedUnit,
-            elevationUnit,
-            visibilityUnit,
-            language
-        )
+        viewModel.saveSettings()
         setFragmentResult("settingsSaved", bundleOf("success" to true))
-        Snackbar.make(binding.root, "Settings saved", Snackbar.LENGTH_SHORT).show()
+        val localeCode = viewModel.localeCode.value ?: ""
+        val message = if (localeCode.isEmpty()) {
+            "Settings saved, using system language"
+        } else {
+            "Settings saved: $localeCode"
+        }
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+        isRecreating = true
+        requireActivity().recreate()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+}
+class SettingViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(SettingViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return SettingViewModel(application) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

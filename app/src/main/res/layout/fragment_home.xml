@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_day">
@@ -64,7 +65,7 @@
                         android:id="@+id/tvMotivationalMessage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Perfect day for a walk!"
+                        android:text="@string/perfect_day_for_a_walk"
                         android:textColor="@color/text_secondary_day"
                         android:textSize="16sp"
                         android:layout_marginTop="8dp"
@@ -84,6 +85,7 @@
                         android:id="@+id/tvFeelsLike"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/Feels"
                         android:textColor="@color/text_secondary_day"
                         android:textSize="16sp"
                         android:layout_marginTop="6dp"
@@ -103,7 +105,7 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginTop="20dp"
-                        android:contentDescription="Weather Icon"
+                        android:contentDescription="@string/weather_icon"
                         app:tint="@color/icon_tint_day"
                         android:transitionName="weather_icon"/>
 
@@ -145,23 +147,25 @@
                         android:layout_columnWeight="1"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:padding="8dp">
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_humidity"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Humidity Icon"/>
+                            android:contentDescription="@string/humidity_icon"/>
 
                         <TextView
                             android:id="@+id/tvHumidity"
+                            android:text="@string/wind"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
+                            android:fontFamily="sans-serif-medium"
                             android:textColor="@color/text_primary_day"
-                            android:textSize="16sp"
-                            android:fontFamily="sans-serif-medium"/>
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -170,17 +174,19 @@
                         android:layout_columnWeight="1"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:padding="8dp">
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_wind_beaufort_0"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Wind Icon"/>
+                            android:contentDescription="@string/wind_icon"/>
 
                         <TextView
                             android:id="@+id/tvWindSpeed"
+                            android:text="@string/humidity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -195,19 +201,21 @@
                         android:layout_columnWeight="1"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:padding="8dp">
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_pressure"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Pressure Icon"/>
+                            android:contentDescription="@string/pressure_icon"/>
 
                         <TextView
                             android:id="@+id/tvPressure"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@string/clouds"
                             android:layout_marginStart="8dp"
                             android:textColor="@color/text_primary_day"
                             android:textSize="16sp"
@@ -219,21 +227,24 @@
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
                         android:orientation="horizontal"
+
                         android:gravity="center_vertical"
-                        android:padding="8dp">
+                        android:padding="8dp"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_cloud"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Cloudiness Icon"/>
+                            android:contentDescription="@string/cloudiness_icon"/>
 
                         <TextView
                             android:id="@+id/tvCloudiness"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
+                            android:text="@string/pressure"
                             android:textColor="@color/text_primary_day"
                             android:textSize="16sp"
                             android:fontFamily="sans-serif-medium"/>
@@ -245,7 +256,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hourly Forecast"
+                android:text="@string/hourly_forecast"
                 android:textSize="20sp"
                 android:textColor="@color/text_primary_day"
                 android:layout_marginBottom="12dp"
@@ -266,7 +277,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5-Day Forecast"
+                android:text="@string/_5_day_forecast"
                 android:textSize="20sp"
                 android:textColor="@color/text_primary_day"
                 android:layout_marginBottom="12dp"
@@ -315,12 +326,12 @@
                             android:layout_height="32dp"
                             android:src="@drawable/ic_sunrise"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Sunrise Icon"/>
+                            android:contentDescription="@string/sunrise_icon"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sunrise"
+                            android:text="@string/sunrise"
                             android:textColor="@color/text_secondary_day"
                             android:textSize="16sp"
                             android:layout_marginTop="8dp"
@@ -355,12 +366,12 @@
                             android:layout_height="32dp"
                             android:src="@drawable/ic_sunset"
                             app:tint="@color/icon_tint_day"
-                            android:contentDescription="Sunset Icon"/>
+                            android:contentDescription="@string/sunset_icon"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sunset"
+                            android:text="@string/sunset"
                             android:textColor="@color/text_secondary_day"
                             android:textSize="16sp"
                             android:layout_marginTop="8dp"
@@ -389,7 +400,7 @@
         app:srcCompat="@drawable/ic_heart"
         app:tint="@color/icon_tint_day"
         app:backgroundTint="@color/primary_day"
-        android:contentDescription="Favorite"
+        android:contentDescription="@string/favorite"
         app:layout_anchor="@id/cardSunriseSunset"
         app:layout_anchorGravity="bottom|end"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
