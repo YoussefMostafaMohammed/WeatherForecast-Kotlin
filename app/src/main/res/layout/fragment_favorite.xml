@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:title="Favorites"
+            app:title="@string/menu_Favorite"
             app:titleTextColor="@color/text_primary_day"
             app:popupTheme="@style/Theme.WeatherForecast.PopupOverlay" />
 

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.weatherforecast.ui.home.HomeFragment"
-        android:label="Home">
+        android:label="@string/menu_home">
         <argument
             android:name="cityId"
             app:argType="integer"
@@ -25,8 +25,8 @@
 
     <fragment
         android:id="@+id/nav_favorite"
-        android:name="com.example.weatherforecast.ui.favorite.FavoriteFragment"
-        android:label="Favorites">
+        android:name="com.example.weatherforecast.ui.favorite.view.FavoriteFragment"
+        android:label="@string/menu_Favorite">
         <action
             android:id="@+id/action_nav_favorite_to_nav_home"
             app:destination="@id/nav_home"
@@ -42,19 +42,20 @@
 
     <fragment
         android:id="@+id/mapPickerFragment"
-        android:name="com.example.weatherforecast.MapPickerFragment"
-        android:label="Pick a Location"
+        android:name="com.example.weatherforecast.ui.mappicker.MapPickerFragment"
+        android:label="@string/map"
         tools:layout="@layout/fragment_map_picker" />
 
     <fragment
         android:id="@+id/nav_alarm"
-        android:name="com.example.weatherforecast.AlertsFragment"
-        android:label="Pick a Location"
+        android:name="com.example.weatherforecast.ui.alert.view.AlertsFragment"
+        android:label="@string/menu_Alarm"
         tools:layout="@layout/fragment_alerts" />
-    <!-- Global actions -->
+
     <action
         android:id="@+id/action_global_mapPickerFragment"
         app:destination="@id/mapPickerFragment" />
+
     <action
         android:id="@+id/action_global_homeFragment"
         app:destination="@id/nav_home"

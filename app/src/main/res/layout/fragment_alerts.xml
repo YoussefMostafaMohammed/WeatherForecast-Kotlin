@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_day"
-    tools:context=".AlertsFragment">
+    tools:context=".ui.alert.view.AlertsFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

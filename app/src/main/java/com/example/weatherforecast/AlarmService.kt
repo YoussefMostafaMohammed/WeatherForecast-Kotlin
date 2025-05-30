@@ -11,7 +11,7 @@ import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.weatherforecast.locale.AlarmLocalDataSourceImpl
+import com.example.weatherforecast.db.AlarmLocalDataSourceImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -20,6 +20,8 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicBoolean
 import android.util.Log
+import com.example.weatherforecast.db.WeatherDatabase
+import com.example.weatherforecast.model.AlarmRepositoryImpl
 
 class AlarmService : Service() {
 

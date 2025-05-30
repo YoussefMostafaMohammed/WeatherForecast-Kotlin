@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.play.services.maps)
     testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("androidx.recyclerview:recyclerview:1.4.0")
@@ -75,4 +76,27 @@ dependencies {
     implementation ("androidx.activity:activity-ktx:1.9.3")
     implementation ("com.google.android.material:material:1.12.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+    testImplementation ("org.mockito:mockito-core:4.11.0")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.2.1")
+
+    // Unit test runtime
+    testImplementation ("junit:junit:4.13.2")
+
+// Kotlin coroutines testing
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+
+// MockK for mocking suspend functions
+    testImplementation ("io.mockk:mockk:1.13.4")
+
+// AndroidX Arch Core (if you ever test LiveData directly)
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+
+// (Optional) If you ever need Truth or Hamcrest for richer assertions
+    testImplementation ("com.google.truth:truth:1.1.3")
+    testImplementation ("org.hamcrest:hamcrest:2.2")
+    testImplementation ("org.slf4j:slf4j-simple:2.0.7")
 }
